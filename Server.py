@@ -1,18 +1,16 @@
-import httplib, thread, socket, proxy_thread, blocking, sys, ssl, urllib, urllib2, urlparse, httplib, dircache
-import threading, select, time
+import httplib, thread, socket, proxy_thread, sys, dircache, threading, select, time
 #********* CONSTANT VARIABLES *********
-BACKLOG = 50            # how many pending connections queue will hold
+BACKLOG = 2            # how many pending connections queue will hold
 MAX_DATA_RECV = 12095    # max number of bytes we receive at once
 host = 'localhost'
 port = 8000
 # _ports = {'http' : 80, 'https' : 443}         #something i picked up somewhere
 
-def worker(num):
-    print "Worker: %s " % num
-    return
-
-
 def main():
+    num_clients=0
+
+
+    # SOCKET SETUP AND ERROR-HANDLING
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.bind((host, port))
@@ -20,20 +18,24 @@ def main():
         print 'The proxy server is ready to receive on port ', port
     except socket.error, (value, message):
         if s:
-            s.close()
+            pass
+        s.close()
         print "Could not open socket: ", message
         sys.exit(1)
 
-    for i in range num_clients:
+    count=0
+    while 1:
         is_readable = [s]
-        is_writable =[]
-        is_error=[]
-        r, q, e = select.select(is_readable, is_writable, is_error, 1.0)
-        if r:
-            conn, client_addr = s.accept()
-            thread.start_new_thread(proxy_thread.proxy_threading, (conn, client_addr))
-        else:
-            time.sleep(0.5)
+        r = select.select(is_readable, 1.0)
+        for i in range(BACKLOG):
+            if r:
+                count=0
+                conn, client_addr = s.accept()
+                thread.start_new_thread(proxy_thread.proxy_threading, (conn, client_addr))
+            else:
+                count+=1
+                time.sleep(0.5)
+                "Waiting ", count
 
     print("Closing connection")
     s.close()
