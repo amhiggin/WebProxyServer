@@ -1,11 +1,11 @@
 import string
 
-BLOCKED = ["http://www.facebook.com", "https://www.facebook.com", "https://www.twitter.com""http://www.twitter.com", "http://www.microsoft.com", "http://www.mcafee.com/us/index.html"]
+BLOCKED = ["http://www.facebook.com", "sr.symcd.com", "https://www.facebook.com", "https://www.twitter.com","http://www.twitter.com", "http://www.microsoft.com", "http://www.mcafee.com/us/index.html"]
 
 # function to check whether url is blocked or not
 def block_check (url):
     if url in BLOCKED:
-        print "Found the url in the blocked list - will exit."
+        print "URL is blocked - will exit."
         return True     # a blocked url
     else:
         print "Not a blocked url"

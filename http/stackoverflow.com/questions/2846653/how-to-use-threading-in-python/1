@@ -1,0 +1,3261 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+
+<title>multithreading - How to use threading in Python? - Stack Overflow</title>
+    <link rel="shortcut icon" href="//cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com"/>
+    <meta property="og:type" content="website" />    
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&a" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to use threading in Python?" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am trying to understand threading in Python. I&#39;ve looked at the documentation and examples, but quite frankly, many examples are overly sophisticated and I&#39;m having trouble understanding them.
+
+H..." />
+    <meta property="og:url" content="http://stackoverflow.com/questions/2846653/how-to-use-threading-in-python"/>
+    <link rel="canonical" href="http://stackoverflow.com/questions/2846653/how-to-use-threading-in-python" />
+
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdn.sstatic.net/Js/stub.en.js?v=f3b9391f9ca3"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/stackoverflow/all.css?v=2a52336e2370">
+
+            <meta name="twitter:app:country" content="US" />
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:iphone" content="871299723" />
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/2846653/how-to-use-threading-in-python" />
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:ipad" content="871299723" />
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/2846653/how-to-use-threading-in-python" />
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/2846653/how-to-use-threading-in-python">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:5,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:2846653});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '2846653');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1459104360,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableSocialMediaInSharePopup":true},"user":{"fkey":"0762fbff18418836c02d8f17a49dea31","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"b65a552240e0","js/moderator.en.js":"3cbf6a60f9c7","js/full-anon.en.js":"fb1284c686e5","js/full.en.js":"a3215299fac4","js/wmd.en.js":"a07d24e61f8b","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"52aabd47bbed","js/help.en.js":"54b998574be9","js/tageditor.en.js":"9c6df10dabc4","js/tageditornew.en.js":"d27d32e92799","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"db5a160e1690","js/review.en.js":"8fbeb442b78f","js/tagsuggestions.en.js":"bc2c996faeda","js/post-validation.en.js":"bae8647949d4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"cbab82429e21","js/keyboard-shortcuts.en.js":"14bba3b6363f","js/external-editor.en.js":"cf58cc6630ef","js/external-editor.en.js":"cf58cc6630ef","js/snippet-javascript.en.js":"cc95173ecb5b","js/snippet-javascript-codemirror.en.js":"ffd4803fdc9a"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+</head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    
+        <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        <iframe id="adzerk-user-match" width="0" height="0" frameborder="0" scrolling="no" onload="window.AUMIframeDone=true"
+                src="https://ssum-sec.casalemedia.com/usermatch?s=183712&amp;cb=https%3A%2F%2Fengine.adzerk.net%2Fudb%2F22%2Fsync%2Fi.gif%3FpartnerId%3D1%26userId%3D"
+                style="display: none;" marginheight="0" marginwidth="0"></iframe>
+
+
+
+
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="//stackoverflow.com">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+                    <a href="http://chat.stackoverflow.com" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+            </div>
+
+
+
+
+    <a href="//stackoverflow.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="1"
+       data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com"
+       class="site-link js-gps-track"
+       data-id="552"
+       data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track"
+                       href="//careers.stackoverflow.com?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider"
+                            data-gps-track="site_switcher.click({ item_type:9 })"
+>
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2846653%2fhow-to-use-threading-in-python" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2846653%2fhow-to-use-threading-in-python" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3>
+        <a href="http://blog.stackoverflow.com" class="fr">company blog</a>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="//stackexchange.com"
+               class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track"
+               data-gps-track="site_switcher.show"
+               title="A list of all 154 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+    <a href="#"
+       class="topbar-icon icon-inbox yes-hover js-inbox-button"
+       title="Recent inbox messages">
+        <span class="hidden-text">Inbox</span>
+        <span class="unread-count" style="display:none"></span>
+    </a>
+    <a href="#"
+       class="topbar-icon icon-achievements yes-hover js-achievements-button "
+       data-unread-class=""
+       title="Recent achievements: reputation, badges, and privileges earned">
+        <span class="hidden-text">Reputation and Badges</span>
+        <span class="unread-count" style="display:none">
+            
+        </span>
+    </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                <span class="topbar-menu-links">
+                                    <a href="https://stackoverflow.com/users/signup?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2846653%2fhow-to-use-threading-in-python" class="login-link">sign up</a>
+                                <a href="https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2846653%2fhow-to-use-threading-in-python" class="login-link">log in</a>
+
+                        <a href="/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="//meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                        About Us
+                        <span class="item-summary">
+                            Learn more about Stack Overflow the company
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://business.stackoverflow.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                        Business
+                        <span class="item-summary">
+                            Learn more about hiring developers or posting ads with us
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="/" >
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li>
+                            <li><a id="nav-jobs" href="/jobs">Jobs</a></li>
+                        <li><a id="nav-tags" href="/tags">Tags</a></li>
+                        <li><a id="nav-users" href="/users">Users</a></li>
+                        <li><a id="nav-badges" href="/help/badges">Badges</a></li>
+                                            </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion"  href="/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+<div id="herobox">
+    <div id="hero-content">
+            <div id="close"><a title="click to minimize">_</a></div>
+        <div id="blurb">
+            Stack Overflow is a community of 4.7 million programmers, just like you, helping each other.
+            <br/>
+                <br/>Join them; it only takes a minute:<br/>
+            <br/>
+            <a href="/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f2846653%2fhow-to-use-threading-in-python" id="tell-me-more" class="button">Sign up</a>
+        </div>
+        <div id="desc">
+            <b>Join the Stack Overflow community to:</b>
+            <ol id="hiw">
+                <li id="q">Ask programming questions
+                </li>
+                <li id="an">Answer and help your peers
+                </li>
+                <li id="b">Get recognized for your expertise
+                </li>
+            </ol>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <script>
+        StackExchange.ready(function () {
+
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("question-page")) {
+                location = 1;;
+            } else if ($("body").hasClass("faq-page")) {
+                location = 5;;
+            } else if ($("body").hasClass("home-page")) {
+                location = 3;;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+                });
+                $.cookie("hero", "mini", { path: "/", expires: 365 });
+                $.ajax({
+                    url: "/hero-mini",
+                    success: function (data) {
+                        $("#herobox").fadeOut("fast", function () {
+                            $("#herobox").replaceWith(data);
+                            $("#herobox-mini").fadeIn("fast");
+                        });
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+</div>
+			<div id="question-header">
+                <h1 itemprop="name"><a href="/questions/2846653/how-to-use-threading-in-python" class="question-hyperlink">How to use threading in Python? [closed]</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="2846653"  id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk139342617",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk139342617">
+            </div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2846653">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">439</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+        <div class="favoritecount"><b>266</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am trying to understand threading in Python. I've looked at the documentation and examples, but quite frankly, many examples are overly sophisticated and I'm having trouble understanding them.</p>
+
+<p>How do you clearly show tasks being divided for multi-threading?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/python" class="post-tag" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="/questions/tagged/multithreading" class="post-tag" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/2846653" title="short permalink to this question" class="short-link" id="link-post-2846653">share</a><span class="lsep">|</span><a href="/posts/2846653/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/2846653/revisions" title="show all edits to this post">edited <span title="2016-03-07 03:10:31Z" class="relativetime">Mar 7 at 3:10</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/660921/carpetsmoker"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/u1hnZ.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/660921/carpetsmoker">Carpetsmoker</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 10077" dir="ltr">10.1k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="33 silver badges"><span class="badge2"></span><span class="badgecount">33</span></span><span title="52 bronze badges"><span class="badge3"></span><span class="badgecount">52</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-05-17 04:24:00Z" class="relativetime">May 17 '10 at 4:24</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/342728/albruno"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/aa47ad4291294ff9dcb0900b1257ed67?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/342728/albruno">albruno</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,226</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+                    <tr>
+            <td class="special-status" colspan="2">
+                <div class="question-status">
+        <h2>                    <b>closed</b> as off-topic by <a href="/users/578411/rene">rene</a>, <a href="/users/2686013/havenodisplayname">HaveNoDisplayName</a>, <a href="/users/1090562/salvador-dali">Salvador Dali</a>, <a href="/users/82548/david-thomas">David Thomas</a>, <a href="/users/2982225/infinite-recursion">Infinite Recursion</a> <span dir="ltr"><span title="2015-07-23 07:19:44Z" class="relativetime">Jul 23 '15 at 7:19</span></span>
+</h2>
+        <p>This question appears to be off-topic. The users who voted to close gave this specific reason:<ul class="close-as-off-topic-status-list"><li>&quot;Questions asking us to <b>recommend or find a book, tool, software library, tutorial or other off-site resource</b> are off-topic for Stack Overflow as they tend to attract opinionated answers and spam. Instead, <a href="http://meta.stackoverflow.com/questions/254393">describe the problem</a> and what has been done so far to solve it.&quot; &ndash; rene, HaveNoDisplayName, Salvador Dali, Infinite Recursion</li></ul><span class="close-status-suffix">If this question can be reworded to fit the rules in the <a href="/help/closed-questions">help center</a>, please <a href="/posts/2846653/edit">edit the question</a>.</span></p>
+    </div>
+            </td>
+        </tr>
+    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2846653" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-27387959" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">A good general discussion around this topic can be found in  <a href="http://www.jeffknupp.com/blog/2012/03/31/pythons-hardest-problem/" rel="nofollow">Python&#39;s Hardest Problem</a> by Jeff Knupp.  In summary, it seems threading is not for beginners.</span>
+                    &ndash;&nbsp;<a href="/users/562930/matthew-walker"
+                       title="602 reputation"
+                       class="comment-user">Matthew Walker</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-04 07:12:39Z" class="relativetime-clean">Sep 4 '13 at 7:12</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-27796577" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="hot">17</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">haha, I tend to think that threading is for everyone, but beginners are not for threading :)))))</span>
+                    &ndash;&nbsp;<a href="/users/874275/bohdan"
+                       title="4334 reputation"
+                       class="comment-user">Bohdan</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-17 03:37:04Z" class="relativetime-clean">Sep 17 '13 at 3:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-45857980" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Just to flag that people should read all the answers as later ones are arguably better as new language features are taken advantage of...</span>
+                    &ndash;&nbsp;<a href="/users/45679/gwyn-evans"
+                       title="718 reputation"
+                       class="comment-user">Gwyn Evans</a>
+                <span class="comment-date" dir="ltr"><span title="2015-03-01 08:14:06Z" class="relativetime-clean">Mar 1 '15 at 8:14</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-50602035" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Remember to write your core logic in C and call it via ctypes to really take advantage of Python threading.</span>
+                    &ndash;&nbsp;<a href="/users/150050/aaa90210"
+                       title="1498 reputation"
+                       class="comment-user">aaa90210</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-09 00:52:01Z" class="relativetime-clean">Jul 9 '15 at 0:52</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51665831" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I just wanted to add that <a href="http://pubsub.sourceforge.net/usage/usage_basic.html" rel="nofollow">PyPubSub</a> is a great way to send and receive messages to control Thread flow</span>
+                    &ndash;&nbsp;<a href="/users/4871483/ytpillai"
+                       title="895 reputation"
+                       class="comment-user">ytpillai</a>
+                <span class="comment-date" dir="ltr"><span title="2015-08-07 09:12:52Z" class="relativetime-clean">Aug 7 '15 at 9:12</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2846653" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>        </table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								9 Answers
+                                <span style="display:none;" itemprop="answerCount">9</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="/questions/2846653/how-to-use-threading-in-python?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">
+            active</a>
+        <a href="/questions/2846653/how-to-use-threading-in-python?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">
+            oldest</a>
+        <a class="youarehere" href="/questions/2846653/how-to-use-threading-in-python?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="2846697"></a>
+<div id="answer-2846697" class="answer" data-answerid="2846697"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2846697">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">463</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's a simple example: you need to try a few alternative URLs and return the contents of the first one to respond.</p>
+
+<pre><code>import Queue
+import threading
+import urllib2
+
+# called by each thread
+def get_url(q, url):
+    q.put(urllib2.urlopen(url).read())
+
+theurls = ["http://google.com", "http://yahoo.com"]
+
+q = Queue.Queue()
+
+for u in theurls:
+    t = threading.Thread(target=get_url, args = (q,u))
+    t.daemon = True
+    t.start()
+
+s = q.get()
+print s
+</code></pre>
+
+<p>This is a case where threading is used as a simple optimization: each subthread is waiting for a URL to resolve and respond, in order to put its contents on the queue; each thread is a daemon (won't keep the process up if main thread ends -- that's more common than not); the main thread starts all subthreads, does a <code>get</code> on the queue to wait until one of them has done a <code>put</code>, then emits the results and terminates (which takes down any subthreads that might still be running, since they're daemon threads).</p>
+
+<p>Proper use of threads in Python is invariably connected to I/O operations (since CPython doesn't use multiple cores to run CPU-bound tasks anyway, the only reason for threading is not blocking the process while there's a wait for some I/O).  Queues are almost invariably the best way to farm out work to threads and/or collect the work's results, by the way, and they're intrinsically threadsafe so they save you from worrying about locks, conditions, events, semaphores, and other inter-thread coordination/communication concepts.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/2846697" title="short permalink to this answer" class="short-link" id="link-post-2846697">share</a><span class="lsep">|</span><a href="/posts/2846697/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2846697/revisions" title="show all edits to this post">edited <span title="2015-02-28 08:47:57Z" class="relativetime">Feb 28 '15 at 8:47</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1981468/others"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/HnKNp.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1981468/others">Others</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">907</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="26 bronze badges"><span class="badge3"></span><span class="badgecount">26</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 04:36:05Z" class="relativetime">May 17 '10 at 4:36</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/95810/alex-martelli"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/e8d5fe90f1fe2148bf130cccd4dc311c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/95810/alex-martelli">Alex Martelli</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 443240" dir="ltr">443k</span><span title="75 gold badges"><span class="badge1"></span><span class="badgecount">75</span></span><span title="816 silver badges"><span class="badge2"></span><span class="badgecount">816</span></span><span title="1121 bronze badges"><span class="badge3"></span><span class="badgecount">1121</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2846697" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="10"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-17295690" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">13</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Still relevant. Great answer.</span>
+                    &ndash;&nbsp;<a href="/users/604259/stefgosselin"
+                       title="6331 reputation"
+                       class="comment-user">stefgosselin</a>
+                <span class="comment-date" dir="ltr"><span title="2012-10-09 03:26:59Z" class="relativetime-clean">Oct 9 '12 at 3:26</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-19668629" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks again, MartelliBot. I&#39;ve updated the example to wait for all to urls to respond:  import Queue, threading, urllib2  q = Queue.Queue()  urls = &#39;&#39;&#39;<a href="http://www.a.com" rel="nofollow">a.com</a>           <a href="http://www.b.com" rel="nofollow">b.com</a>           <a href="http://www.c.com&#39;&#39;&#39;.split()" rel="nofollow">c.com&#39;&#39;&#39;.split()</a>  urls_received = 0   def get_url(q, url):   req = urllib2.Request(url)   resp = urllib2.urlopen(req)   q.put(resp.read())   global urls_received   urls_received +=1    print urls_received   for u in urls:   t = threading.Thread(target=get_url, args = (q,u))   t.daemon = True   t.start()  while q.empty() and urls_received &lt; len(urls):   s = q.get()   print s</span>
+                    &ndash;&nbsp;<a href="/users/811003/htmldrum"
+                       title="1060 reputation"
+                       class="comment-user">htmldrum</a>
+                <span class="comment-date" dir="ltr"><span title="2013-01-07 02:23:12Z" class="relativetime-clean">Jan 7 '13 at 2:23</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-24300276" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@JRM: if you look at the next answer below, I think that a better way to wait until the threads are finished would be to use the <code>join()</code> method, since that would make the main thread wait until they&#39;re done without consuming processor by constantly checking the value. @Alex: thanks, this is exactly what I needed to understand how to use threads.</span>
+                    &ndash;&nbsp;<a href="/users/2102965/krs013"
+                       title="242 reputation"
+                       class="comment-user">krs013</a>
+                <span class="comment-date" dir="ltr"><span title="2013-05-31 05:33:45Z" class="relativetime-clean">May 31 '13 at 5:33</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-27947533" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For python3, replace &#39;import urllib2&#39; with &#39;import urllib.request as urllib2&#39;. and put parentheses in the print statement.</span>
+                    &ndash;&nbsp;<a href="/users/231338/harvey"
+                       title="706 reputation"
+                       class="comment-user">Harvey</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-21 01:50:13Z" class="relativetime-clean">Sep 21 '13 at 1:50</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-31445491" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For python 3 replace <code>Queue</code> module name with <code>queue</code>. Method name is the same.</span>
+                    &ndash;&nbsp;<a href="/users/588966/jsmyth"
+                       title="675 reputation"
+                       class="comment-user">JSmyth</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-05 21:13:39Z" class="relativetime-clean">Jan 5 '14 at 21:13</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2846697" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>10</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk197275161",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk197275161">
+            </div>
+  
+<a name="28463266"></a>
+<div id="answer-28463266" class="answer" data-answerid="28463266"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="28463266">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">189</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Since this question was asked in 2010, there has been real simplification in how to do simple multithreading with python with <strong><a href="https://docs.python.org/2/library/functions.html#map">map</a></strong> and <strong><a href="https://docs.python.org/2/library/multiprocessing.html">pool</a></strong>.</p>
+
+<p>The code below comes from an article/blog post that you should definitely check out (no affiliation) - <strong><a href="http://chriskiehl.com/article/parallelism-in-one-line/">Parallelism in one line
+A Better Model for Day to Day Threading Tasks</a></strong>.  I'll summarize below - it ends up being just a few lines of code:</p>
+
+<pre><code>from multiprocessing.dummy import Pool as ThreadPool 
+pool = ThreadPool(4) 
+results = pool.map(my_function, my_array)
+</code></pre>
+
+<p>Which is the multithreaded version of:</p>
+
+<pre><code>for item in my_array:
+    results += my_function(item)
+</code></pre>
+
+<hr>
+
+<p><strong>Description</strong></p>
+
+<blockquote>
+  <p>Map is a cool little function, and the key to easily injecting parallelism into your Python code. For those unfamiliar, map is something lifted from functional languages like Lisp. It is a function which maps another function over a sequence.</p>
+  
+  <p>Map handles the iteration over the sequence for us, applies the function, and stores all of the results in a handy list at the end.</p>
+</blockquote>
+
+<p><img src="http://i.stack.imgur.com/Yq37m.png" alt="enter image description here"></p>
+
+<hr>
+
+<p><strong>Implementation</strong></p>
+
+<blockquote>
+  <p>Parallel versions of the map function are provided by two libraries:multiprocessing, and also its little known, but equally fantastic step child:multiprocessing.dummy.</p>
+</blockquote>
+
+<pre><code>import urllib2 
+from multiprocessing.dummy import Pool as ThreadPool 
+
+urls = [
+  'http://www.python.org', 
+  'http://www.python.org/about/',
+  'http://www.onlamp.com/pub/a/python/2003/04/17/metaclasses.html',
+  'http://www.python.org/doc/',
+  'http://www.python.org/download/',
+  'http://www.python.org/getit/',
+  'http://www.python.org/community/',
+  'https://wiki.python.org/moin/',
+  ]
+
+# Make the Pool of workers
+pool = ThreadPool(4) 
+
+# Open the urls in their own threads
+# and return the results
+results = pool.map(urllib2.urlopen, urls)
+
+#close the pool and wait for the work to finish 
+pool.close() 
+pool.join() 
+</code></pre>
+
+<p>And the timing results:</p>
+
+<pre><code>Single thread:   14.4 seconds
+       4 Pool:   3.1 seconds
+       8 Pool:   1.4 seconds
+      13 Pool:   1.3 seconds
+</code></pre>
+
+<hr>
+
+<p><strong>Passing multiple arguments</strong> (works like this only in Python 3.3 and later): (<a href="http://stackoverflow.com/a/28975239/2327328">source</a>):</p>
+
+<p>To pass multiple arrays:</p>
+
+<pre><code>results = pool.starmap(function, zip(list_a, list_b))
+</code></pre>
+
+<p>or to pass a constant and an array:</p>
+
+<pre><code>results = pool.starmap(function, zip(itertools.repeat(constant), list_a))
+</code></pre>
+
+<p>If you are using an earlier version of Python, you can pass multiple arguments via <a href="http://stackoverflow.com/a/5443941/1893275">this workaround</a>.</p>
+
+<p>(Thanks to <a href="http://stackoverflow.com/users/2441026/user136036">user136036</a> for the helpful comment)</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/28463266" title="short permalink to this answer" class="short-link" id="link-post-28463266">share</a><span class="lsep">|</span><a href="/posts/28463266/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/28463266/revisions" title="show all edits to this post">edited <span title="2015-05-06 14:44:57Z" class="relativetime">May 6 '15 at 14:44</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1893275/thechymera"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/555d585d6d78c68894ac90fd1e984309?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1893275/thechymera">TheChymera</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,516</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="32 bronze badges"><span class="badge3"></span><span class="badgecount">32</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-02-11 19:53:42Z" class="relativetime">Feb 11 '15 at 19:53</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2327328/philshem"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/dDIn1.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2327328/philshem">philshem</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,359</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="14 silver badges"><span class="badge2"></span><span class="badgecount">14</span></span><span title="46 bronze badges"><span class="badge3"></span><span class="badgecount">46</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-28463266" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="6"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-45585202" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">8</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is only lacking votes because it is so freshly posted. This answer works beautifully and demonstrates the &#39;map&#39; functionality which gives a much easier to understand syntax than the other answers here.</span>
+                    &ndash;&nbsp;<a href="/users/460976/jeffcrowe"
+                       title="574 reputation"
+                       class="comment-user">jeffcrowe</a>
+                <span class="comment-date" dir="ltr"><span title="2015-02-21 07:51:33Z" class="relativetime-clean">Feb 21 '15 at 7:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-45924453" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@jeffcrowe This simple parallelization has realy improved while keeping the structure simple and clean. I was surprised such a useful method hadn&#39;t been posted in this thread.</span>
+                    &ndash;&nbsp;<a href="/users/2327328/philshem"
+                       title="4359 reputation"
+                       class="comment-user">philshem</a>
+                <span class="comment-date" dir="ltr"><span title="2015-03-03 08:21:43Z" class="relativetime-clean">Mar 3 '15 at 8:21</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-46202478" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">In case you want to pass multiple arguments read this: <a href="http://stackoverflow.com/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments/28975239#28975239" title="python multiprocessing pool map for multiple arguments">stackoverflow.com/questions/5442910/&hellip;</a></span>
+                    &ndash;&nbsp;<a href="/users/2441026/user136036"
+                       title="580 reputation"
+                       class="comment-user">user136036</a>
+                <span class="comment-date" dir="ltr"><span title="2015-03-10 23:05:49Z" class="relativetime-clean">Mar 10 '15 at 23:05</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51114387" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Such a beautiful solution. I&#39;m glad I&#39;ve discovered this.</span>
+                    &ndash;&nbsp;<a href="/users/2102764/piggybox"
+                       title="614 reputation"
+                       class="comment-user">piggybox</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-23 07:12:12Z" class="relativetime-clean">Jul 23 '15 at 7:12</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-52609827" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">8</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">By the way, guys, you can write <code>with Pool(8) as p: p.map( *whatever* )</code> and get rid of bookkeeping lines too.</span>
+                    &ndash;&nbsp;<a href="/users/297171/barafu-albino"
+                       title="708 reputation"
+                       class="comment-user">Barafu Albino</a>
+                <span class="comment-date" dir="ltr"><span title="2015-09-03 07:06:44Z" class="relativetime-clean">Sep 3 '15 at 7:06</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-28463266" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>6</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="2846695"></a>
+<div id="answer-2846695" class="answer" data-answerid="2846695"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2846695">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">155</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><b>NOTE</b>: For actual parallelization in Python, you should use the <a href="https://docs.python.org/2/library/multiprocessing.html">multiprocessing</a> module to fork multiple processes that execute in parallel (due to the global interpreter lock, Python threads provide interleaving but are in fact executed serially, not in parallel, and are only useful when interleaving I/O operations).</p>
+
+<p>However, if you are merely looking for interleaving (or are doing I/O operations that can be parallelized despite the global interpreter lock), then the <a href="http://docs.python.org/library/threading.html">threading</a> module is the place to start. As a really simple example, let's consider the problem of summing a large range by summing subranges in parallel:</p>
+
+<pre><code>import threading
+
+class SummingThread(threading.Thread):
+     def __init__(self,low,high):
+         super(SummingThread, self).__init__()
+         self.low=low
+         self.high=high
+         self.total=0
+
+     def run(self):
+         for i in range(self.low,self.high):
+             self.total+=i
+
+
+thread1 = SummingThread(0,500000)
+thread2 = SummingThread(500000,1000000)
+thread1.start() # This actually causes the thread to run
+thread2.start()
+thread1.join()  # This waits until the thread has completed
+thread2.join()  
+# At this point, both threads have completed
+result = thread1.total + thread2.total
+print result
+</code></pre>
+
+<p>Note that the above is a very stupid example, as it does absolutely no I/O and will be executed serially albeit interleaved (with the added overhead of context switching) in CPython due to the global interpreter lock.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/2846695" title="short permalink to this answer" class="short-link" id="link-post-2846695">share</a><span class="lsep">|</span><a href="/posts/2846695/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2846695/revisions" title="show all edits to this post">edited <span title="2014-06-09 19:40:20Z" class="relativetime">Jun 9 '14 at 19:40</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2073595/dano"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/RRUZn.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2073595/dano">dano</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 34644" dir="ltr">34.6k</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="36 silver badges"><span class="badge2"></span><span class="badgecount">36</span></span><span title="69 bronze badges"><span class="badge3"></span><span class="badgecount">69</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 04:35:11Z" class="relativetime">May 17 '10 at 4:35</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/136540/michael-aaron-safyan"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a4d5888f021e337d09be5b3109c11e72?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/136540/michael-aaron-safyan">Michael Aaron Safyan</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 58744" dir="ltr">58.7k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="87 silver badges"><span class="badge2"></span><span class="badgecount">87</span></span><span title="157 bronze badges"><span class="badge3"></span><span class="badgecount">157</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-2846695" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-2889836" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Alex, I didn&#39;t say it was practical, but it does demonstrate how to define and spawn threads, which I think is what the OP wants.</span>
+                    &ndash;&nbsp;<a href="/users/136540/michael-aaron-safyan"
+                       title="58744 reputation"
+                       class="comment-user">Michael Aaron Safyan</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 04:39:09Z" class="relativetime-clean">May 17 '10 at 4:39</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-33053834" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">While this does show how to define and spawn threads, it actually does not sum the subranges in parallel. <code>thread1</code> runs until it&#39;s completed while the main thread blocks, then the same thing happens with <code>thread2</code>, then the main thread resumes and prints out the values they accumulated.</span>
+                    &ndash;&nbsp;<a href="/users/355230/martineau"
+                       title="34233 reputation"
+                       class="comment-user">martineau</a>
+                <span class="comment-date" dir="ltr"><span title="2014-02-17 19:32:31Z" class="relativetime-clean">Feb 17 '14 at 19:32</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-33737772" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Shouldn&#39;t that be <code>super(SummingThread, self).__init__()</code>? As in <a href="http://stackoverflow.com/a/2197625/806988">stackoverflow.com/a/2197625/806988</a></span>
+                    &ndash;&nbsp;<a href="/users/806988/james-andres"
+                       title="1092 reputation"
+                       class="comment-user">James Andres</a>
+                <span class="comment-date" dir="ltr"><span title="2014-03-06 09:37:09Z" class="relativetime-clean">Mar 6 '14 at 9:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-33741833" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@JamesAndres, assuming that no one inherits from &quot;SummingThread&quot;, then either one works fine; in such a case super(SummingThread, self) is just a fancy way to look up the next class in the method resolution order (MRO), which is threading.Thread (and then subsequently calling <b>init</b> on that in both cases). You are right, though, in that using super() is better style for current Python. Super was relatively recent at the time that I provided this answer, hence calling directly to the super class rather than using super().  I&#39;ll update this to use super, though.</span>
+                    &ndash;&nbsp;<a href="/users/136540/michael-aaron-safyan"
+                       title="58744 reputation"
+                       class="comment-user">Michael Aaron Safyan</a>
+                <span class="comment-date" dir="ltr"><span title="2014-03-06 11:16:04Z" class="relativetime-clean">Mar 6 '14 at 11:16</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-36400699" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">WARNING: Don&#39;t use multithreading in tasks like this! As was shown by Dave Beazley: <a href="http://www.dabeaz.com/python/NewGIL.pdf" rel="nofollow">dabeaz.com/python/NewGIL.pdf</a>, 2 python threads on 2 CPUs carry out a CPU-heavy task 2 times SLOWER than 1 thread on 1 CPU and 1.5 times SLOWER than 2 threads on 1 CPU. This bizarre behavior is due to mis-coordination of efforts between OS and Python. A real-life use case for threads is an I/O heavy task. E.g. when you perform read/writes over network, it makes sense to put a thread, waiting for data to be read/written, to background and switch CPU to another thread, which needs to process data.</span>
+                    &ndash;&nbsp;<a href="/users/1360544/bob"
+                       title="1203 reputation"
+                       class="comment-user">Bob</a>
+                <span class="comment-date" dir="ltr"><span title="2014-05-15 23:13:46Z" class="relativetime-clean">May 15 '14 at 23:13</span></span>
+                    <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-2846695" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="9625995"></a>
+<div id="answer-9625995" class="answer" data-answerid="9625995"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="9625995">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">58</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Like others mentioned, CPython can use threads only for I\O waits due to GIL.
+If you want to benefit from multiple cores for CPU-bound tasks, use <a href="http://docs.python.org/library/multiprocessing.html">multiprocessing</a>:</p>
+
+<pre><code>from multiprocessing import Process
+
+def f(name):
+    print 'hello', name
+
+if __name__ == '__main__':
+    p = Process(target=f, args=('bob',))
+    p.start()
+    p.join()
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/9625995" title="short permalink to this answer" class="short-link" id="link-post-9625995">share</a><span class="lsep">|</span><a href="/posts/9625995/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/9625995/revisions" title="show all edits to this post">edited <span title="2013-06-11 14:04:09Z" class="relativetime">Jun 11 '13 at 14:04</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/110488/chen-levy"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/21369d30fe2c6c976ffe735f2fd0ee91?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/110488/chen-levy">Chen Levy</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,739</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="37 silver badges"><span class="badge2"></span><span class="badgecount">37</span></span><span title="56 bronze badges"><span class="badge3"></span><span class="badgecount">56</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-08 22:22:17Z" class="relativetime">Mar 8 '12 at 22:22</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/330760/kai"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/b4c0c10aac9cc4361225db2889b33c0b?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/330760/kai">Kai</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">749</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="11 bronze badges"><span class="badge3"></span><span class="badgecount">11</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9625995" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-27730506" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="hot">19</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">could you explain a little what this does?</span>
+                    &ndash;&nbsp;<a href="/users/2488942/pandita"
+                       title="1251 reputation"
+                       class="comment-user">pandita</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-14 16:01:58Z" class="relativetime-clean">Sep 14 '13 at 16:01</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37971696" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@pandita: the code creates a process, then starts it. So now there&#39;s two things happening at once: the main line of the program, and the process that&#39;s starting with the target, <code>f</code> function. In parallel, the main program now just waits for the process to exit, <code>join</code>ing up with it.  If the main part just exited, the subprocess might or might not run to completion, so doing a <code>join</code> is always recommended.</span>
+                    &ndash;&nbsp;<a href="/users/143880/johntellsall"
+                       title="4847 reputation"
+                       class="comment-user">johntellsall</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-02 05:56:07Z" class="relativetime-clean">Jul 2 '14 at 5:56</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-46130170" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">An expanded answer that includes the <code>map</code> function is here: <a href="http://stackoverflow.com/a/28463266/2327328">stackoverflow.com/a/28463266/2327328</a></span>
+                    &ndash;&nbsp;<a href="/users/2327328/philshem"
+                       title="4359 reputation"
+                       class="comment-user">philshem</a>
+                <span class="comment-date" dir="ltr"><span title="2015-03-09 08:15:55Z" class="relativetime-clean">Mar 9 '15 at 8:15</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-51273900" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@philshem Be careful b/c the link you posted is using a pool of threads (not processes) as mentioned here <a href="http://stackoverflow.com/questions/26432411/multiprocessing-dummy-in-python" title="multiprocessing dummy in python">stackoverflow.com/questions/26432411/&hellip;</a>.  However, this answer is using a process.  I&#39;m new to this stuff, but seems like (due to GIL) you will only get performance gains in specific situations when using multithreading in Python.  However, using a pool of processes can take advantage of a multicore processor by have more than 1 core work on a process.</span>
+                    &ndash;&nbsp;<a href="/users/3731622/user3731622"
+                       title="504 reputation"
+                       class="comment-user">user3731622</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-27 23:01:01Z" class="relativetime-clean">Jul 27 '15 at 23:01</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-9625995" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="18963931"></a>
+<div id="answer-18963931" class="answer" data-answerid="18963931"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="18963931">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">53</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Just a note, Queue is not required for threading.</p>
+
+<p>This is the simplest example I could imagine that shows 10 processes running concurrently.</p>
+
+<pre><code>import threading
+from random import randint
+from time import sleep
+
+
+def print_number(number):
+    # Sleeps a random 1 to 10 seconds
+    rand_int_var = randint(1, 10)
+    sleep(rand_int_var)
+    print "Thread " + str(number) + " slept for " + str(rand_int_var) + " seconds"
+
+thread_list = []
+
+for i in range(1, 10):
+    # Instantiates the thread
+    # (i) does not make a sequence, so (i,)
+    t = threading.Thread(target=print_number, args=(i,))
+    # Sticks the thread in a list so that it remains accessible
+    thread_list.append(t)
+
+# Starts threads
+for thread in thread_list:
+    thread.start()
+
+# This blocks the calling thread until the thread whose join() method is called is terminated.
+# From http://docs.python.org/2/library/threading.html#thread-objects
+for thread in thread_list:
+    thread.join()
+
+# Demonstrates that the main process waited for threads to complete
+print "Done"
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/18963931" title="short permalink to this answer" class="short-link" id="link-post-18963931">share</a><span class="lsep">|</span><a href="/posts/18963931/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/18963931/revisions" title="show all edits to this post">edited <span title="2015-03-05 20:11:54Z" class="relativetime">Mar 5 '15 at 20:11</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/475229/jgritty"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/0952c4a2c08421aecb397d3a81545f6e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/475229/jgritty">jgritty</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">6,635</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="43 bronze badges"><span class="badge3"></span><span class="badgecount">43</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-09-23 16:07:36Z" class="relativetime">Sep 23 '13 at 16:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2461430/douglas-adams"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/rG501.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2461430/douglas-adams">Douglas Adams</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">911</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18963931" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-32805858" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Add the last quote to &quot;Done to make it print &quot;Done&quot;</span>
+                    &ndash;&nbsp;<a href="/users/2787992/ichux"
+                       title="901 reputation"
+                       class="comment-user">iChux</a>
+                <span class="comment-date" dir="ltr"><span title="2014-02-11 09:53:26Z" class="relativetime-clean">Feb 11 '14 at 9:53</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-43487033" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I like this example better than Martelli&#39;s, it&#39;s easier to play with. However, I would recommend that printNumber do the following, to make it a little bit clearer what&#39;s going on: it should save the randint to a variable before sleeping on it, and then the print should be changed to say &quot;Thread&quot; + str(number) + &quot; slept for &quot; + theRandintVariable + &quot; seconds&quot;</span>
+                    &ndash;&nbsp;<a href="/users/2544357/nickolai"
+                       title="165 reputation"
+                       class="comment-user">Nickolai</a>
+                <span class="comment-date" dir="ltr"><span title="2014-12-17 15:38:09Z" class="relativetime-clean">Dec 17 '14 at 15:38</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-57913112" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Is there a way to know when each thread has finished, as it finishes?</span>
+                    &ndash;&nbsp;<a href="/users/193244/matt"
+                       title="821 reputation"
+                       class="comment-user">Matt</a>
+                <span class="comment-date" dir="ltr"><span title="2016-01-29 23:11:12Z" class="relativetime-clean">Jan 29 at 23:11</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-58050734" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Matt There are a few ways to do something like that, but it would depend on your needs. One way would be to update a singleton or some other publicly accessible variable that&#39;s being watched in a while loop and updated at the end of the thread.</span>
+                    &ndash;&nbsp;<a href="/users/2461430/douglas-adams"
+                       title="911 reputation"
+                       class="comment-user">Douglas Adams</a>
+                <span class="comment-date" dir="ltr"><span title="2016-02-03 00:06:33Z" class="relativetime-clean">Feb 3 at 0:06</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-18963931" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="19120647"></a>
+<div id="answer-19120647" class="answer" data-answerid="19120647"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="19120647">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">25</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The answer from Alex Martelli helped me, however here is modified version that I thought was more useful (at least to me).</p>
+
+<pre><code>import Queue
+import threading
+import urllib2
+
+worker_data = ['http://google.com', 'http://yahoo.com', 'http://bing.com']
+
+#load up a queue with your data, this will handle locking
+q = Queue.Queue()
+for url in worker_data:
+    q.put(url)
+
+#define a worker function
+def worker(queue):
+    queue_full = True
+    while queue_full:
+        try:
+            #get your data off the queue, and do some work
+            url= queue.get(False)
+            data = urllib2.urlopen(url).read()
+            print len(data)
+
+        except Queue.Empty:
+            queue_full = False
+
+#create as many threads as you want
+thread_count = 5
+for i in range(thread_count):
+    t = threading.Thread(target=worker, args = (q,))
+    t.start()
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/19120647" title="short permalink to this answer" class="short-link" id="link-post-19120647">share</a><span class="lsep">|</span><a href="/posts/19120647/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-10-01 15:50:44Z" class="relativetime">Oct 1 '13 at 15:50</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/996117/jimjty"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/c075cdbca5e889faaa2b63b11262e083?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/996117/jimjty">JimJty</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">559</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19120647" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-32744730" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Why not just break on the exception?</span>
+                    &ndash;&nbsp;<a href="/users/28196/stavros-korokithakis"
+                       title="1231 reputation"
+                       class="comment-user">Stavros Korokithakis</a>
+                <span class="comment-date" dir="ltr"><span title="2014-02-09 19:16:45Z" class="relativetime-clean">Feb 9 '14 at 19:16</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-32787542" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">you could, just personal preference</span>
+                    &ndash;&nbsp;<a href="/users/996117/jimjty"
+                       title="559 reputation"
+                       class="comment-user">JimJty</a>
+                <span class="comment-date" dir="ltr"><span title="2014-02-10 21:10:41Z" class="relativetime-clean">Feb 10 '14 at 21:10</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-19120647" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="15995749"></a>
+<div id="answer-15995749" class="answer" data-answerid="15995749"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="15995749">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">12</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>For me, the perfect example for Threading is monitoring Asynchronous events.  Look at this code.</p>
+
+<pre><code># thread_test.py
+import threading
+import time 
+
+class Monitor(threading.Thread):
+    def __init__(self, mon):
+        threading.Thread.__init__(self)
+        self.mon = mon
+
+    def run(self):
+        while True:
+            if self.mon[0] == 2:
+                print "Mon = 2"
+                self.mon[0] = 3;
+</code></pre>
+
+<p>You can play with this code by opening an IPython session and doing something like:</p>
+
+<pre><code>&gt;&gt;&gt;from thread_test import Monitor
+&gt;&gt;&gt;a = [0]
+&gt;&gt;&gt;mon = Monitor(a)
+&gt;&gt;&gt;mon.start()
+&gt;&gt;&gt;a[0] = 2
+Mon = 2
+&gt;&gt;&gt;a[0] = 2
+Mon = 2
+</code></pre>
+
+<p>Wait a few minutes</p>
+
+<pre><code>&gt;&gt;&gt;a[0] = 2
+Mon = 2
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/15995749" title="short permalink to this answer" class="short-link" id="link-post-15995749">share</a><span class="lsep">|</span><a href="/posts/15995749/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-04-14 04:18:42Z" class="relativetime">Apr 14 '13 at 4:18</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1301011/dvreed77"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a13991e2ae8cd4753d0224062036013f?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1301011/dvreed77">dvreed77</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">906</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="17 bronze badges"><span class="badge3"></span><span class="badgecount">17</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-15995749" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-23063856" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">simple and self-explanatory :)</span>
+                    &ndash;&nbsp;<a href="/users/1336292/deeshank"
+                       title="643 reputation"
+                       class="comment-user">deeshank</a>
+                <span class="comment-date" dir="ltr"><span title="2013-04-22 09:28:09Z" class="relativetime-clean">Apr 22 '13 at 9:28</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-23063989" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">How do we stop the thread manually? @dvreed77</span>
+                    &ndash;&nbsp;<a href="/users/1336292/deeshank"
+                       title="643 reputation"
+                       class="comment-user">deeshank</a>
+                <span class="comment-date" dir="ltr"><span title="2013-04-22 09:32:32Z" class="relativetime-clean">Apr 22 '13 at 9:32</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-27729982" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">AttributeError: &#39;Monitor&#39; object has no attribute &#39;stop&#39; ?</span>
+                    &ndash;&nbsp;<a href="/users/2488942/pandita"
+                       title="1251 reputation"
+                       class="comment-user">pandita</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-14 15:29:58Z" class="relativetime-clean">Sep 14 '13 at 15:29</span></span>
+                    <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-27783047" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Aren&#39;t you blasting away CPU cycles while waiting for your event to happen? Not always a very practical thing to do.</span>
+                    &ndash;&nbsp;<a href="/users/2264743/mogul"
+                       title="2008 reputation"
+                       class="comment-user">mogul</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-16 16:58:11Z" class="relativetime-clean">Sep 16 '13 at 16:58</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38693669" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Like mogul says, this will be constantly executing. At a minimum you could add in a short sleep, say sleep(0.1), which would probably significantly reduce cpu usage on a simple example like this.</span>
+                    &ndash;&nbsp;<a href="/users/3427777/fantabolous"
+                       title="1776 reputation"
+                       class="comment-user">fantabolous</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-23 09:10:10Z" class="relativetime-clean">Jul 23 '14 at 9:10</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-15995749" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link  dno"
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   ></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href=# onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="24092195"></a>
+<div id="answer-24092195" class="answer" data-answerid="24092195"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="24092195">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">9</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I found this very useful: create as many threads as cores and let them execute a (large) number of tasks (in this case, calling a shell program):</p>
+
+<pre><code>import Queue
+import threading
+import multiprocessing
+import subprocess
+
+q = Queue.Queue()
+for i in range(30): #put 30 tasks in the queue
+    q.put(i)
+
+def worker():
+    while True:
+        item = q.get()
+        #execute a task: call a shell program and wait until it completes
+        subprocess.call("echo "+str(item), shell=True) 
+        q.task_done()
+
+cpus=multiprocessing.cpu_count() #detect number of cores
+print("Creating %d threads" % cpus)
+for i in range(cpus):
+     t = threading.Thread(target=worker)
+     t.daemon = True
+     t.start()
+
+q.join() #block until all tasks are done
+</code></pre>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/24092195" title="short permalink to this answer" class="short-link" id="link-post-24092195">share</a><span class="lsep">|</span><a href="/posts/24092195/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/24092195/revisions" title="show all edits to this post">edited <span title="2014-06-07 11:18:06Z" class="relativetime">Jun 7 '14 at 11:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-06-06 23:51:06Z" class="relativetime">Jun 6 '14 at 23:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2253101/dolphin"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/d286194bd25cfbddf2ccbc42210bf440?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2253101/dolphin">dolphin</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">326</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-24092195" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-37968286" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@shavenwarthog sure one can adjust the &quot;cpus&quot; variable depending on one&#39;s needs. Anyway, the subprocess call will spawn subprocesses and these will be allocated cpus by the OS (python&#39;s &quot;parent process&quot; does not mean &quot;same CPU&quot; for the subprocesses).</span>
+                    &ndash;&nbsp;<a href="/users/2253101/dolphin"
+                       title="326 reputation"
+                       class="comment-user">dolphin</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-02 02:28:11Z" class="relativetime-clean">Jul 2 '14 at 2:28</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-37971564" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">you&#39;re correct, my comment about &quot;threads are started on the same CPU as the parent process&quot; is wrong.  Thanks for the reply!</span>
+                    &ndash;&nbsp;<a href="/users/143880/johntellsall"
+                       title="4847 reputation"
+                       class="comment-user">johntellsall</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-02 05:51:24Z" class="relativetime-clean">Jul 2 '14 at 5:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38693574" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">maybe worth noting that unlike multithreading which uses the same memory space, multiprocessing can not share variables / data as easily. +1 though.</span>
+                    &ndash;&nbsp;<a href="/users/3427777/fantabolous"
+                       title="1776 reputation"
+                       class="comment-user">fantabolous</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-23 09:07:42Z" class="relativetime-clean">Jul 23 '14 at 9:07</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-24092195" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+
+  
+<a name="29774367"></a>
+<div id="answer-29774367" class="answer" data-answerid="29774367"  itemscope itemtype="http://schema.org/Answer">
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="29774367">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Along with all the great answers and examples here at stack that have helped me personally understand the above mentioned multiprocessing and threading, the following site (here i've provided topic specific links, due to the simple examples contained therein;  as the op requested.), really clicked for me, with its documentation, and my understanding of any questions i've had about python thus far, heres to hopes it can help someone here as much as I.</p>
+
+<ul>
+<li>No Affiliation </li>
+</ul>
+
+<p><a href="http://pymotw.com/2/threading/index.html#module-threading">Python Threading </a></p>
+
+<p><a href="http://pymotw.com/2/multiprocessing/index.html#module-multiprocessing">Python Multiprocessing</a></p>
+
+<p>While i recognize theres a multitude of answers, i find it would be worth the reference if i can help another get a better understanding of something in their interest
+.</p>
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/29774367" title="short permalink to this answer" class="short-link" id="link-post-29774367">share</a><span class="lsep">|</span><a href="/posts/29774367/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-04-21 13:57:34Z" class="relativetime">Apr 21 '15 at 13:57</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/4789516/1black1"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/epif9.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/4789516/1black1">1black1</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">312</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-29774367" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+
+
+    <tr id="comment-47679855" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">While this link may answer the question, it is better to include the essential parts of the answer here and provide the link for reference. Link-only answers can become invalid if the linked page changes.</span>
+                    &ndash;&nbsp;<a href="/users/2670892/greg-449"
+                       title="49014 reputation"
+                       class="comment-user">greg-449</a>
+                <span class="comment-date" dir="ltr"><span title="2015-04-21 14:14:55Z" class="relativetime-clean">Apr 21 '15 at 14:14</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-47682988" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It seems ive missed the proper formatting for answers around here, ill heed your word for the future, and try to adjust accordingly in the mean time.</span>
+                    &ndash;&nbsp;<a href="/users/4789516/1black1"
+                       title="312 reputation"
+                       class="comment-user">1black1</a>
+                <span class="comment-date" dir="ltr"><span title="2015-04-21 15:17:35Z" class="relativetime-clean">Apr 21 '15 at 15:17</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-29774367" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>    </table>
+</div>
+				
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you&#39;re looking for?							Browse other questions tagged <a href="/questions/tagged/python" class="post-tag" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="/questions/tagged/multithreading" class="post-tag" title="show questions tagged &#39;multithreading&#39;" rel="tag">multithreading</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-05-17 04:24:00Z"><b>5 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>308386 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2016-03-07 03:10:31Z">20 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk2079047496",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk2079047496">
+            </div>
+        <div id="hireme">
+            <script>
+;"use strict";(function(n){function tt(n,i,r){var u=t.createElement("script"),e="onreadystatechange",o="onload",f="readyState",s=!1;u.async=!0;u.src=n;typeof i=="function"&&(u[o]=u[e]=function(){s||u[f]&&u[f]!=="loaded"&&u[f]!=="complete"||(s=!0,typeof i=="function"&&i(u),u[o]=u[e]=null,r&&u.parentNode.removeChild(u))});ut.appendChild(u)}function it(n){var i=t.createElement("link");i.type="text/css";i.rel="stylesheet";i.href=n;ft.appendChild(i)}function ct(){var n=i.StackExchange,t="options",r="user";return n&&n[t]&&n[t][r]&&n[t][r].accountId}function lt(n){var t,i;return n=ot(e.hash?e.hash.substr(1):"",n||{}),t=n.ac||n.accountId||ct(),t&&(n.ac=t),n.tags||(i=nt(),i.length>0&&(n.tags=i.join(";"))),n}function at(n,t,i,r){var c=h(n);if(c===null)return function(){};var e=null,f=null,l=u(),a=function a(){d(c)?(s(e),r(!1,u()-l)):f=o(a,t)};return f=o(a,t),i!==undefined&&(e=o(function(){s(f);r(!0,u()-l)},i)),function(){s(f);s(e)}}function vt(){var r=e.hash.indexOf("large=1")!==-1||!y()||h("#careersadsdoublehigh"),u=r?1:2,f=a(["hireme"],v),n=[u+"="+f],i=a(["careers1"],v),t;return i&&n.push("5="+i),t=a(["careers3"],v),t&&n.push("6="+t),n.join("&")}function rt(n,t){var s=b({},f,{zones:f.zones||vt()}),r=lt(s),e,o;n&&(r.azt=1);t&&(r.lw=t);typeof i.innerWidth=="number"&&(r.bw=i.innerWidth);w&&(r.ver=w);e=["zones","ip","ac","eng","prov","tags","theme","at","remote","seed","lw","azt","sysadmin","bw","nocpm","jobview","cpview","ver"];o=p+"?"+st(r,e);l=u();tt(o)}function yt(n){function h(){f.forEach(it);e.forEach(function(n){return pt(n,t[n],s,o)});typeof i.clc_after_load=="function"&&i.clc_after_load()}var t=n.cr,r=n.h,f=n.st,e=Object.keys(t),o=l?u()-l:0,s="//"+r+"/ct";h()}function pt(n,t,i,u){var s=t.cl,c=t.cn,e=t.an,l=t.utm,o=(s||[]).join(" "),f=h("#"+n);f&&(o&&(f.className+=" "+o),f.innerHTML=c.replace("&pt=0","&pt="+(u||0)),f.onmousedown=function(n){for(var t=n.target,u,o,s;t.tagName!=="A"&&t!==f;)t=t.parentNode;t!==f&&(u=[],e&&u.push("an="+e),o=[].filter.call(t.attributes,function(n){return/^data-/.test(n.name)}),o.length>0&&o.forEach(function(n){var t=n.name.replace(/^data-/,"");u.push(r(t)+"="+r(n.value))}),u.push("utm="+r(et+l)),s="",u.length>0&&(s="?"+u.join("&")),t.href=i+s)})}function wt(n){var i=t.createElement("a");return i.href=n,i.host}function bt(){var i,n;y()?(n=at(c,20,i,rt),o(function(){var r=h(c),i;d(r)||(r.parentNode.removeChild(r),typeof n=="function"&&n(),i=t.createElement("img"),i.src="//"+wt(p)+"/to.gif",i.style.display="none",t.body.appendChild(i))},2e3)):rt()}var p=n.u,f=n.o,w=n.c,y;f=f||{};var b=Object.assign||function(n){for(var i,r,t=1;t<arguments.length;t++){i=arguments[t];for(r in i)Object.prototype.hasOwnProperty.call(i,r)&&(n[r]=i[r])}return n},i=window,e=i.location,r=i.encodeURIComponent,k=i.decodeURIComponent,t=i.document,ut=t.body,ft=t.getElementsByTagName("head")[0],o=i.setTimeout,s=i.clearTimeout,et="&utm_source="+e.hostname+"&utm_medium=ad&utm_campaign=",c="#sidebar [id^=adzerk].everyonelovesstackoverflow",l=0,u=function(){return(new Date).getTime()},ot=function(n,t){return n.split(/\&/g).reduce(function(n,t){var i=t.split("=");return n[k(i[0])]=k(i[1]),n},t||{})},st=function(n,t){return Object.keys(n).filter(function(n){return t.indexOf(n)!==-1}).map(function(t){return r(t)+"="+r(n[t])}).join("&")},d=function(n){return n.innerHTML.replace(/\s+$/g,"")},g=t.querySelectorAll.bind(t),h=t.querySelector.bind(t),ht=t.getElementById.bind(t),a=function(n,t){return n.filter(t)[0]},nt=function(){return[].map.call(g(".post-taglist .post-tag"),function(n){return n.textContent})},v=function(n){return!!ht(n)};y=function(){return g(c).length>0};i.clc=b(window.clc||{},{init:yt,load:bt,ls:tt,as:it,tags:nt})}).call(null, {"c":"a4cb9dc","u":"//clc.stackoverflow.com/p.js"});"use strict";var allowedHosts=["stackoverflow.com","serverfault.com"];(allowedHosts[0]==="*"||allowedHosts.indexOf(location.hostname)!==-1)&&window.clc.load();            </script>
+        </div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="/q/27133758" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="/questions/27133758/python-how-to-run-two-functions-in-parallel" class="question-hyperlink">Python: How to run two functions in parallel</a>
+</div><div class="spacer">
+	<a href="/q/5442910" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">100</div>
+	</a>
+	<a href="/questions/5442910/python-multiprocessing-pool-map-for-multiple-arguments" class="question-hyperlink">Python multiprocessing pool.map for multiple arguments</a>
+</div><div class="spacer">
+	<a href="/q/2197563" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">11</div>
+	</a>
+	<a href="/questions/2197563/why-doesnt-superthread-self-init-work-for-a-threading-thread-subclass" class="question-hyperlink">Why doesn&#39;t super(Thread, self).__init__() work for a threading.Thread subclass?</a>
+</div><div class="spacer">
+	<a href="/q/14533458" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">17</div>
+	</a>
+	<a href="/questions/14533458/python-threading-multiple-bash-subprocesses" class="question-hyperlink">Python threading multiple bash subprocesses?</a>
+</div><div class="spacer">
+	<a href="/q/15349997" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">8</div>
+	</a>
+	<a href="/questions/15349997/assertionerror-when-threading-in-python" class="question-hyperlink">AssertionError when threading in Python</a>
+</div><div class="spacer">
+	<a href="/q/26432411" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">4</div>
+	</a>
+	<a href="/questions/26432411/multiprocessing-dummy-in-python" class="question-hyperlink">multiprocessing.dummy in Python</a>
+</div><div class="spacer">
+	<a href="/q/27021440" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="/questions/27021440/python-requests-dont-wait-for-request-to-finish" class="question-hyperlink">Python Requests: Don&#39;t wait for request to finish</a>
+</div><div class="spacer">
+	<a href="/q/23142719" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="/questions/23142719/pyqt-app-exec-stops-all-following-code-from-running" class="question-hyperlink">PyQt: app.exec_() stops all following code from running</a>
+</div><div class="spacer">
+	<a href="/q/25968518" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="/questions/25968518/python-multiprocessing-lib-error-attributeerror-exit" class="question-hyperlink">Python Multiprocessing Lib Error (AttributeError: __exit__)</a>
+</div><div class="spacer">
+	<a href="/q/25028717" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/25028717/run-a-shell-script-from-python-gui" class="question-hyperlink">run a shell script from Python GUI</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/2846653">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/82831" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes extra-large">2278
+    </div>
+</a><a href="/questions/82831/how-to-check-whether-a-file-exists-using-python" class="question-hyperlink">How to check whether a file exists using Python</a>
+</div>
+<div class="spacer">
+<a href="/q/100003" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">2781
+    </div>
+</a><a href="/questions/100003/what-is-a-metaclass-in-python" class="question-hyperlink">What is a metaclass in Python?</a>
+</div>
+<div class="spacer">
+<a href="/q/231767" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">4644
+    </div>
+</a><a href="/questions/231767/what-does-the-yield-keyword-do-in-python" class="question-hyperlink">What does the yield keyword do in Python?</a>
+</div>
+<div class="spacer">
+<a href="/q/323972" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">351
+    </div>
+</a><a href="/questions/323972/is-there-any-way-to-kill-a-thread-in-python" class="question-hyperlink">Is there any way to kill a Thread in Python?</a>
+</div>
+<div class="spacer">
+<a href="/q/739654" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1747
+    </div>
+</a><a href="/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python" class="question-hyperlink">How can I make a chain of function decorators in Python?</a>
+</div>
+<div class="spacer">
+<a href="/q/2829329" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">86
+    </div>
+</a><a href="/questions/2829329/catch-a-threads-exception-in-the-caller-thread-in-python" class="question-hyperlink">Catch a thread&#39;s exception in the caller thread in Python</a>
+</div>
+<div class="spacer">
+<a href="/q/3164241" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="/questions/3164241/thread-safety-in-python-question-how-it-works" class="question-hyperlink">Thread safety in Python (Question how it works)</a>
+</div>
+<div class="spacer">
+<a href="/q/5654541" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/5654541/how-to-gather-data-from-multiple-threads-in-python" class="question-hyperlink">How to gather data from multiple threads in python?</a>
+</div>
+<div class="spacer">
+<a href="/q/28656558" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="/questions/28656558/python-threading-how-to-make-concurrent-objects" class="question-hyperlink">Python threading: how to make concurrent objects</a>
+</div>
+<div class="spacer">
+<a href="/q/31102081" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/31102081/how-to-acces-the-values-returned-from-threads-in-python" class="question-hyperlink">How to acces the values returned from threads in Python</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="//stackexchange.com/questions?tab=hot" 
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-japanese" title="Japanese Language Stack Exchange"></div><a href="http://japanese.stackexchange.com/questions/33157/another-way-to-say-%e3%81%93%e3%82%8c%e3%81%af%e3%81%a0%e3%82%8c%e3%81%ae-%e3%81%a7%e3%81%99%e3%81%8b" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:257 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Another way to say &quot;これはだれの___ですか？&quot;
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/123127/why-didnt-bellatrix-use-legilimency-on-hermione" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why didn&#39;t Bellatrix use Legilimency on Hermione?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/64212/should-i-tell-my-boss-that-i-hate-my-job" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I tell my boss that I hate my job?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/118643/would-turning-a-diceware-phrase-into-a-sentence-decrease-its-security" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Would turning a Diceware phrase into a sentence decrease its security?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/36117583/pythonic-way-to-avoid-if-x-return-x-statements" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pythonic way to avoid &quot;if x: return x&quot; statements
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/315467/what-is-this-method-of-joking-about-a-morbid-situation-called" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is this method of joking about a morbid situation called?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-astronomy" title="Astronomy Stack Exchange"></div><a href="http://astronomy.stackexchange.com/questions/14319/did-i-see-another-planet" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:514 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Did I see another planet?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/26439/what-is-the-significance-of-the-speed-of-sound-to-aerodynamics-and-aircraft-desi" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the significance of the speed of sound to aerodynamics and aircraft design?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/118077/is-the-save-button-delay-in-a-firefox-download-dialog-a-security-feature-what-d" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is the save button delay in a Firefox download dialog a security feature? What does it protect?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/38896/how-could-a-book-be-constructed-to-last-forever" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could a book be constructed to last forever?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/115669/when-do-i-need-to-write-a-test-class" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When do I need to write a test class?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/245214/what-are-gravitational-waves-made-of" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are gravitational waves made of?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/85751/on-thursday-or-on-a-thursday" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    ‘on Thursday’ or ‘on a Thursday’
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/301012/how-to-create-dotted-counter" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to create dotted counter?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-raspberrypi" title="Raspberry Pi Stack Exchange"></div><a href="http://raspberrypi.stackexchange.com/questions/44800/why-do-i-have-so-many-ram-disks" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:447 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do I have so many RAM disks?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/26431/why-fly-vfr-at-all" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why fly VFR at all?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/123138/do-you-remember-the-memories-that-youve-placed-in-a-pensieve" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do you remember the memories that you&#39;ve placed in a pensieve?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/76062/addition-in-base-1i" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Addition in base -1+i
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/67795/which-side-of-the-baking-paper-should-face-up" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Which side of the baking paper should face up?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-earthscience" title="Earth Science Stack Exchange"></div><a href="http://earthscience.stackexchange.com/questions/7748/great-pacific-garbage-patch-equilibrium-points" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:553 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Great Pacific Garbage Patch Equilibrium Points
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/234621/on-the-complexification-of-a-riemannian-manifold" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    On the complexification of a Riemannian manifold
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/118568/when-encrypting-cloud-stored-data-is-it-acceptable-to-use-the-users-account-pa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When encrypting cloud-stored data, is it acceptable to use the user&#39;s account password?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/111190/how-to-find-the-shortest-path-going-through-some-specified-vertices" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to find the shortest path going through some specified vertices
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/65756/mount-everest-climb-cost-and-total-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Mount Everest climb cost and total time
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+		<script>
+StackExchange.ready(function(){$.get('/posts/2846653/ivc/be3a');});
+</script>
+<noscript>
+    <div><img src="/posts/2846653/ivc/be3a" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-py</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="/tour">tour</a>
+                    <a href="/help">help</a>
+                    <a href="http://blog.stackoverflow.com?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com">chat</a>
+                    <a href="http://data.stackexchange.com">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="//mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine&#174; CMS">ExpressionEngine&#174; Answers</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (9)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (5)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="//careers.stackoverflow.com">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo &#169; 2016 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2016.3.25.3380
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () {
+            setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+        ados_setKeywords('python,multithreading');; ados_load();
+    });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|python|multithreading|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>
+            
+    </body>
+</html>

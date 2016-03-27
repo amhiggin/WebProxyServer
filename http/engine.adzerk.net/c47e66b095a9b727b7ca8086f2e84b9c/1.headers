@@ -1,0 +1,15 @@
+GET http://engine.adzerk.net/ados?t=1459104100448&request={%22Placements%22:[{%22A%22:22,%22S%22:8277,%22D%22:%22careers1%22,%22AT%22:[4],%22Z%22:43},{%22A%22:22,%22S%22:8277,%22D%22:%22careers3%22,%22AT%22:[4],%22Z%22:44}],%22Keywords%22:%22python%2C%20sockets%2C%20python-2.7%22,%22Referrer%22:%22%22,%22IsAsync%22:true} HTTP/1.1 2016-03-27T18:41:40Z
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: accept, origin, content-type, content-length
+Access-Control-Allow-Methods: GET,PUT,POST,DELETE,OPTIONS
+Access-Control-Allow-Origin: *
+Content-Type: application/javascript
+Date: Sun, 27 Mar 2016 18:41:58 GMT
+ETag: "-548866043"
+Server: nginx/1.1.19
+Set-Cookie: azk=ue1-38fcdcc5f3b64bc9af0a74f360f2b7e0; Path=/; Expires=Mon, 27 Mar 2017 18:41:58 GMT
+x-powered-by: adzerk bifrost/
+x-served-by: engine-i-d7bd9a54
+Content-Length: 13563
+Connection: keep-alive
+

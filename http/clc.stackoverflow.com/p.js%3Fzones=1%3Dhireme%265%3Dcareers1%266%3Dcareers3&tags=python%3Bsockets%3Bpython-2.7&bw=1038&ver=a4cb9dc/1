@@ -1,0 +1,112 @@
+;"use strict";window.clc.init.call(null, {"st":["//cdn.sstatic.net/clc/styles/cp.min.css?v=315fe94a85f6"],"cr":{"hireme":{"cl":["clc-cp-sb","clc-cp-team","clc-cp-workday-dublin"],"an":"Y2NikLX4VpkfdtmDkQEIWBgZTLwYWYUZGBkYtZgYGGSNJ7gur3xkz8Q3BSgPFmfYU3atpmP-acUZ2gA","utm":"large-sidebar-company-works-here","cn":"<div class=\"clc-cp-sb-header\" style=\"background-image: url(//i.stack.imgur.com/wC5YPm.jpg);\" target=\"_blank\"><div class=\"clc-cp-sb-logo\"><img src=\"//i.stack.imgur.com/UrreZ.jpg\" alt=\"Workday Dublin\" /></div></div><div class=\"clc-cp-sb-body\"><div class=\"clc-cp-sb-info\"><div class=\"clc-cp-sb-name\">Workday Dublin</div><p class=\"clc-cp-sb-loc\">based in Dublin, Ireland</p></div><div class=\"clc-cp-sb-body-hdr\">Who you'll work with&hellip;</div><ul class=\"clc-cp-sb-workwith\"><li class=\"clc-cp-sb-member\"><img src=\"http://www.gravatar.com/avatar/8b77fe28d72a1cc27aac6763fb19f6a1?s=55&amp;r=PG&amp;d=file://cdn.sstatic.net/clc/img/cp/default-gravatar.png%3Fv=4c7dc2ac35fe\" alt=\"Caroline\"/><ul class=\"clc-cp-sb-member-info\"><li class=\"clc-cp-sb-member-name\">Caroline</li><li class=\"clc-cp-sb-member-title\"></li><li class=\"clc-cp-sb-member-likes\"></li></ul></li></ul></div><div class=\"clc-cp-sb-button\">view company page</div><a class=\"clc-cp-link\" href=\"//stackoverflow.com/company/workday-dublin\" data-at=\"1\" data-tz=\"4\" data-ti=\"554\" target=\"_blank\"></a><img class=\"impression\" src=\"//clc.stackoverflow.com/soi.gif?an=Y2NikLX4VpkfdtmDkQEIWBgZTLwYWYUZGBkYtZgYGGSNJ7gur3xkz8Q3BSgPFmfYU3atpmP-acUZ2gA&at=1&pt=0\" style=\"display:none;\" />"}},"h":"clc.stackoverflow.com"});;"use strict";(function(n){var i=n.az,t=window,r=t.clc,e=r.ls,o=r.tags,s=function(n){var t={"https:":"engine","http:":"static"}[window.location.protocol];e("//"+t+".adzerk.net/ados.js",n)},u=function(){i.forEach(function(n){ados_add_placement(22,8277,n.d,n.s).setZone(n.z)});ados_setKeywords(o().map(encodeURIComponent).join(", "));ados_load()},f=function(){t.ados?u():(t.ados={},t.ados.run=[u])};i!==null&&(i.length>0?s(f):f())}).call(null, {"az":[{"z":43,"s":[4],"d":"careers1"},{"z":44,"s":[4],"d":"careers3"}]});HTTP/1.1 301 Moved Permanently
+Content-Type: text/html; charset=UTF-8
+Location: http://gravatar.com/avatar/8b77fe28d72a1cc27aac6763fb19f6a1?s=55&r=PG&d=file://cdn.sstatic.net/clc/img/cp/default-gravatar.png%3Fv=4c7dc2ac35fe
+Date: Sun, 27 Mar 2016 18:41:57 GMT
+Content-Length: 274
+
+<head><title>Document Moved</title></head>
+<body><h1>Object Moved</h1>This document may be found <a HREF="http://gravatar.com/avatar/8b77fe28d72a1cc27aac6763fb19f6a1?s=55&amp;r=PG&amp;d=file://cdn.sstatic.net/clc/img/cp/default-gravatar.png%3Fv=4c7dc2ac35fe">here</a></body>HTTP/1.1 404 Not Found
+X-Request-Guid: 7cbbd108-8303-44c8-a203-35a037b8caed
+Date: Sun, 27 Mar 2016 18:41:57 GMT
+Content-Length: 3880
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Site not found: gravatar.com</title>
+    <link rel="stylesheet" href="//cdn.sstatic.net/stackexchange/all.css?v=7c3a482edc9e" type="text/css" />
+    <link rel="shortcut icon" href="//cdn.sstatic.net/stackexchange/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="//cdn.sstatic.net/stackexchange/img/apple-touch-icon.png" />
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Exchange" href="http://stackexchange.com/opensearch.xml" />
+    <!--[if IE]>
+    <script src="//cdn.sstatic.net/stackexchange/js/third-party/html5vpre3.1.js?v=8cbec4b96cda"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="wrapper">
+        <div id="overlay-header"></div>
+        <section id="topBar">
+            <div class="contentWrapper">
+                <div class="search">
+                    <form action="http://stackexchange.com/search">
+                        <input id="search" class="search-box" type="text" name="q" size="31" title="search all sites" />
+                    </form>
+                </div>
+                <nav id="top">
+                    <ul>
+                        <li><a href="http://stackexchange.com/about">about</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <header>
+            <div class="contentWrapper">
+                <a href="http://stackexchange.com"><h1>Stack Exchange</h1></a>
+                <ul class="navMain">
+                    <li><a href="http://stackexchange.com/sites" >All Sites</a></li>
+                    <li><a href="http://stackexchange.com/questions" >Hot Questions</a></li>
+                    <li><a href="http://stackexchange.com/leagues" >Top Users</a></li>
+                    <li><a href="http://stackexchange.com/newsletters" >Newsletters</a></li>
+                    <li><a href="http://stackexchange.com/blogs" >Blogs</a></li>
+                </ul>
+            </div>
+        </header>
+        <section id="content">
+            <div class="contentWrapper">
+                <img src="//cdn.sstatic.net/stackexchange/img/panda-huh.jpg" style="float: right; margin: 0 0 15px 30px" />                
+                <div style="margin-top: 20px;">
+                    <h2>Couldn't find gravatar.com</h2>
+                    <p>
+                        The Q&amp;A site <b>gravatar.com</b> doesn't seem to exist&hellip;<i>yet</i>.
+                    </p>
+                    <p>
+                        You can vote for it to be created through our democratic, community-driven process at <a href="http://area51.stackexchange.com">area51.stackexchange.com</a>,
+                        or see a complete directory of all our Q&amp;A sites at <a href="http://stackexchange.com/sites">stackexchange.com</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer id="footer">
+        <div class="contentWrapper">
+            <div class="footerLinksSpaced">
+                <p>
+                    <a href="http://stackexchange.com/about">about</a> <a href="http://blog.stackoverflow.com">blog</a> <a href="http://stackexchange.com/legal">legal</a> <a href="http://stackexchange.com/about/contact">contact us</a> <a href="http://meta.stackexchange.com">feedback always welcome</a>
+                </p>
+            </div>
+            <p>site design / logo &copy; 2016 Stack Exchange, Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a></p>
+        </div>
+    </footer>
+</body>
+</html>HTTP/1.1 404 Not Found
+X-Request-Guid: 978390e1-4c1f-4bb1-adf6-eaeff3e45edb
+Date: Sun, 27 Mar 2016 18:41:57 GMT
+Content-Length: 3895
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Site not found: engine.adzerk.net</title>
+    <link rel="stylesheet" href="//cdn.sstatic.net/stackexchange/all.css?v=7c3a482edc9e" type="text/css" />
+    <link rel="shortcut icon" href="//cdn.sstatic.net/stackexchange/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="//cdn.sstatic.net/stackexchange/img/apple-touch-icon.png" />
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Exchange" href="http://stackexchange.com/opensearch.xml" />
+    <!--[if IE]>
+    <script src="//cdn.sstatic.net/stackexchange/js/third-party/html5vpre3.1.js?v=8cbec4b96cda"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="wrapper">
+        <div id="overlay-header"></div>
+        <section id="topBar">
+            <div class="contentWrapper">
+                <div class="search">
+                    <form action="http://stackexchange.com/search">
+                        <input id="search" class="search-box" type="text" name="q" size="31" title="search all sites" />
+                    </form>
+                </div>
+                <nav id="top">
+                    <ul>
+                        <li><a href="http://stackexchange

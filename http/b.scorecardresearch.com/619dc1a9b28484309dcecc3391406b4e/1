@@ -1,0 +1,16 @@
+HTTP/1.0 400 Bad Request
+Server: AkamaiGHost
+Mime-Version: 1.0
+Content-Type: text/html
+Content-Length: 249
+Expires: Sun, 27 Mar 2016 18:46:02 GMT
+Date: Sun, 27 Mar 2016 18:46:02 GMT
+Connection: close
+
+<HTML><HEAD>
+<TITLE>Invalid URL</TITLE>
+</HEAD><BODY>
+<H1>Invalid URL</H1>
+The requested URL "&#47;Advertisers&#47;04db449cf859496ea6694b6264b56c61&#46;png", is invalid.<p>
+Reference&#32;&#35;9&#46;e5a8869f&#46;1459104362&#46;681c9c3
+</BODY></HTML>

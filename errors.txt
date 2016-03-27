@@ -1,0 +1,18 @@
+2016-03-27T18:41:40Z An error has occurred: 
+Traceback (most recent call last):
+  File "C:\Python27\lib\asyncore.py", line 83, in read
+    obj.handle_read_event()
+  File "C:\Python27\lib\asyncore.py", line 449, in handle_read_event
+    self.handle_read()
+  File "C:\Python27\lib\asynchat.py", line 134, in handle_read
+    self.collect_incoming_data (self.ac_in_buffer)
+  File "C:/Users/Amber/WebProxyServer/sample2.py", line 422, in collect_incoming_data
+    archive_connection(self, self.receiver.request, self.receiver.url, data)
+  File "C:/Users/Amber/WebProxyServer/sample2.py", line 234, in archive_connection
+    address = archive_url2filename(url)
+  File "C:/Users/Amber/WebProxyServer/sample2.py", line 198, in archive_url2filename
+    os.makedirs(dirname)
+  File "C:\Python27\lib\os.py", line 157, in makedirs
+    mkdir(name, mode)
+WindowsError: [Error 206] The filename or extension is too long: 'http\\b.scorecardresearch.com\\b%3Fc1=2&c2=17440561&ns__t=1459104100303&ns_c=UTF-8&c8=Python%20Socket%20Listening%20-%20Stack%20Overflow&c7=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F15869158%2Fpython-socket-listening&c9='
+

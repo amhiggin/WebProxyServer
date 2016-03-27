@@ -1,0 +1,13 @@
+GET http://pixel.quantserve.com/pixel;r=507387452;a=p-c1rF4kxgLUzNc;fpan=u;fpa=;ns=0;ce=0;cm=;je=0;sr=1920x1080x24;enc=n;dst=1;et=1459104100306;tzo=-60;ref=;url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F15869158%2Fpython-socket-listening;ogl=type.website%2Cimage.http%3A%2F%2Fcdn%252Esstatic%252Enet%2Fstackoverflow%2Fimg%2Fapple-touch-icon%402%252Epng%3Fv%3D73d79a89bded%26a%2Ctitle.Python%20Socket%20Listening%2Cdescription.All%20of%20the%20below%20mentioned%20is%20on%20windows%20machines%20using%20python%202%252E7%0A%0AHello%252C%0A%0AI%20am%2Curl.http%3A%2F%2Fstackoverflow%252Ecom%2Fquestions%2F15869158%2Fpython-socket-listening HTTP/1.1 2016-03-27T18:41:40Z
+HTTP/1.0 200 OK
+Connection: close
+Content-Type: image/gif
+Set-Cookie: mc=56f82975-da16c-ea227-5272f; expires=Thu, 27-Apr-2017 18:41:57 GMT; path=/; domain=.quantserve.com
+P3P: CP="NOI DSP COR NID CURa ADMa DEVa PSAo PSDo OUR SAMa IND COM NAV"
+Cache-Control: private, no-cache, no-store, proxy-revalidate
+Pragma: no-cache
+Expires: Fri, 04 Aug 1978 12:00:00 GMT
+Content-Length: 35
+Date: Sun, 27 Mar 2016 18:41:57 GMT
+Server: QS
+

@@ -1,0 +1,14 @@
+GET http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NSwiYnQiOjAsImNtIjo5MjEsImNoIjoxMTc4LCJjayI6e30sImNyIjoyNjg4LCJkaSI6IjE3ZjRmMTA2YjBhMjQ0YmI4ODgyNjYxYTI2ZTAyNTkwIiwiZG0iOjEsImZjIjoyNDg1LCJmbCI6MjY2MywiaXAiOiI4Ni40Mi43OS4yMTUiLCJrdyI6InB5dGhvbixtdWx0aXRocmVhZGluZyIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoxLCJzdCI6ODI3NywidWsiOiJ1ZTEtZDBmZjQ0NmNmM2FhNDhhODk1ZjRjZjg0NWY0ZWI1NjIiLCJ6biI6NDUsInRzIjoxNDU5MTA0MzYyNDA0LCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsyMDc5MDQ3NDk2In0&s=riMKGWyH-o6z3vaZiLqbFM156NY HTTP/1.1 2016-03-27T18:45:45Z
+HTTP/1.1 200 OK
+Access-Control-Allow-Headers: accept, origin, content-type, content-length
+Access-Control-Allow-Methods: GET,PUT,POST,DELETE,OPTIONS
+Access-Control-Allow-Origin: *
+Content-Type: image/gif
+Date: Sun, 27 Mar 2016 18:46:03 GMT
+Server: nginx/1.1.19
+Set-Cookie: azk=ue1-d0ff446cf3aa48a895f4cf845f4eb562; Path=/; Expires=Mon, 27 Mar 2017 18:46:03 GMT
+x-powered-by: adzerk bifrost/
+x-served-by: engine-i-9978fe02
+Content-Length: 43
+Connection: keep-alive
+

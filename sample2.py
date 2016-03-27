@@ -1,123 +1,181 @@
-# taken from http://www.oki-osk.jp/esc/python/proxy/
+# -*- coding: cp1252 -*-
+# <PythonProxy.py>
 #
+#Copyright (c) <2009> <Fábio Domingues - fnds3000 in gmail.com>
+#
+#Permission is hereby granted, free of charge, to any person
+#obtaining a copy of this software and associated documentation
+#files (the "Software"), to deal in the Software without
+#restriction, including without limitation the rights to use,
+#copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the
+#Software is furnished to do so, subject to the following
+#conditions:
+#
+#The above copyright notice and this permission notice shall be
+#included in all copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+#EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+#OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+#NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+#HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+#WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+#FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+#OTHER DEALINGS IN THE SOFTWARE.
+
+"""\
+Copyright (c) <2009> <Fábio Domingues - fnds3000 in gmail.com> <MIT Licence>
+
+                  **************************************
+                 *** Python Proxy - A Fast HTTP proxy ***
+                  **************************************
+
+Neste momento este proxy é um Elie Proxy.
+
+Suporta os métodos HTTP:
+ - OPTIONS;
+ - GET;
+ - HEAD;
+ - POST;
+ - PUT;
+ - DELETE;
+ - TRACE;
+ - CONENCT.
+
+Suporta:
+ - Conexões dos cliente em IPv4 ou IPv6;
+ - Conexões ao alvo em IPv4 e IPv6;
+ - Conexões todo o tipo de transmissão de dados TCP (CONNECT tunneling),
+     p.e. ligações SSL, como é o caso do HTTPS.
+
+A fazer:
+ - Verificar se o input vindo do cliente está correcto;
+   - Enviar os devidos HTTP erros se não, ou simplesmente quebrar a ligação;
+ - Criar um gestor de erros;
+ - Criar ficheiro log de erros;
+ - Colocar excepções nos sítios onde é previsível a ocorrência de erros,
+     p.e.sockets e ficheiros;
+ - Rever tudo e melhorar a estrutura do programar e colocar nomes adequados nas
+     variáveis e métodos;
+ - Comentar o programa decentemente;
+ - Doc Strings.
+
+Funcionalidades futuras:
+ - Adiconar a funcionalidade de proxy anónimo e transparente;
+ - Suportar FTP?.
 
 
+(!) Atenção o que se segue só tem efeito em conexões não CONNECT, para estas o
+ proxy é sempre Elite.
 
-import BaseHTTPServer, select, socket, SocketServer, urlparse
+Qual a diferença entre um proxy Elite, Anónimo e Transparente?
+ - Um proxy elite é totalmente anónimo, o servidor que o recebe não consegue ter
+     conhecimento da existência do proxy e não recebe o endereço IP do cliente;
+ - Quando é usado um proxy anónimo o servidor sabe que o cliente está a usar um
+     proxy mas não sabe o endereço IP do cliente;
+     É enviado o cabeçalho HTTP "Proxy-agent".
+ - Um proxy transparente fornece ao servidor o IP do cliente e um informação que
+     se está a usar um proxy.
+     São enviados os cabeçalhos HTTP "Proxy-agent" e "HTTP_X_FORWARDED_FOR".
 
-class ProxyHandler (BaseHTTPServer.BaseHTTPRequestHandler):
-    __base = BaseHTTPServer.BaseHTTPRequestHandler
-    __base_handle = __base.handle
+"""
 
+import socket, thread, select
 
-    rbufsize = 0                        # self.rfile Be unbuffered
+__version__ = '0.1.0 Draft 1'
+BUFLEN = 8192
+VERSION = 'Python Proxy/'+__version__
+HTTPVER = 'HTTP/1.1'
 
-    def handle(self):
-        (ip, port) =  self.client_address
-        if hasattr(self, 'allowed_clients') and ip not in self.allowed_clients:
-            self.raw_requestline = self.rfile.readline()
-            if self.parse_request(): self.send_error(403)
+class ConnectionHandler:
+    def __init__(self, connection, address, timeout):
+        self.client = connection
+        self.client_buffer = ''
+        self.timeout = timeout
+        self.method, self.path, self.protocol = self.get_base_header()
+        if self.method=='CONNECT':
+            self.method_CONNECT()
+        elif self.method in ('OPTIONS', 'GET', 'HEAD', 'POST', 'PUT',
+                             'DELETE', 'TRACE'):
+            self.method_others()
+        self.client.close()
+        self.target.close()
+
+    def get_base_header(self):
+        while 1:
+            self.client_buffer += self.client.recv(BUFLEN)
+            end = self.client_buffer.find('\n')
+            if end!=-1:
+                break
+        print '%s'%self.client_buffer[:end]#debug
+        data = (self.client_buffer[:end+1]).split()
+        self.client_buffer = self.client_buffer[end+1:]
+        return data
+
+    def method_CONNECT(self):
+        self._connect_target(self.path)
+        self.client.send(HTTPVER+' 200 Connection established\n'+
+                         'Proxy-agent: %s\n\n'%VERSION)
+        self.client_buffer = ''
+        self._read_write()
+
+    def method_others(self):
+        self.path = self.path[7:]
+        i = self.path.find('/')
+        host = self.path[:i]
+        path = self.path[i:]
+        self._connect_target(host)
+        self.target.send('%s %s %s\n'%(self.method, path, self.protocol)+
+                         self.client_buffer)
+        self.client_buffer = ''
+        self._read_write()
+
+    def _connect_target(self, host):
+        i = host.find(':')
+        if i!=-1:
+            port = int(host[i+1:])
+            host = host[:i]
         else:
-            self.__base_handle()
+            port = 80
+        (soc_family, _, _, _, address) = socket.getaddrinfo(host, port)[0]
+        self.target = socket.socket(soc_family)
+        self.target.connect(address)
 
-    def _connect_to(self, netloc, soc):
-        i = netloc.find(':')
-        if i >= 0:
-            host_port = netloc[:i], int(netloc[i+1:])
-        else:
-            host_port = netloc, 80
-        print "\t" "connect to %s:%d " % host_port
-        try: soc.connect(host_port)
-        except socket.error, arg:
-            try: msg = arg[1]
-            except: msg = arg
-            self.send_error(404, msg)
-            return 0
-        return 1
-
-    def do_CONNECT(self):
-        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        try:
-            if self._connect_to(self.path, soc):
-                self.log_request(200)
-                self.wfile.write(self.protocol_version +
-                                 " 200 Connection established\r\n")
-                self.wfile.write("Proxy-agent: %s\r\n" % self.version_string())
-                self.wfile.write("\r\n")
-                self._read_write(soc, 300)
-        finally:
-            print "\t" "bye"
-            soc.close()
-            self.connection.close()
-
-    def do_GET(self):
-        (scm, netloc, path, params, query, fragment) = urlparse.urlparse(
-            self.path, 'http')
-        if scm != 'http' or fragment or not netloc:
-            self.send_error(400, "bad url %s" % self.path)
-            return
-        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        try:
-            if self._connect_to(netloc, soc):
-                self.log_request()
-                soc.send("%s %s %s\r\n" % (
-                    self.command,
-                    urlparse.urlunparse(('', '', path, params, query, '')),
-                    self.request_version))
-                self.headers['Connection'] = 'close'
-                del self.headers['Proxy-Connection']
-                for key_val in self.headers.items():
-                    soc.send("%s: %s\r\n" % key_val)
-                soc.send("\r\n")
-                self._read_write(soc)
-        finally:
-            print "\t" "bye"
-            soc.close()
-            self.connection.close()
-
-    def _read_write(self, soc, max_idling=20):
-        iw = [self.connection, soc]
-        ow = []
+    def _read_write(self):
+        time_out_max = self.timeout/3
+        socs = [self.client, self.target]
         count = 0
         while 1:
             count += 1
-            (ins, _, exs) = select.select(iw, ow, iw, 3)
-            if exs: break
-            if ins:
-                for i in ins:
-                    if i is soc:
-                        out = self.connection
+            (recv, _, error) = select.select(socs, [], socs, 3)
+            if error:
+                break
+            if recv:
+                for in_ in recv:
+                    data = in_.recv(BUFLEN)
+                    if in_ is self.client:
+                        out = self.target
                     else:
-                        out = soc
-                    data = i.recv(8192)
+                        out = self.client
                     if data:
                         out.send(data)
                         count = 0
-            else:
-                print "\t" "idle", count
-            if count == max_idling: break
+            if count == time_out_max:
+                break
 
-    do_HEAD = do_GET
-    do_POST = do_GET
-    do_PUT  = do_GET
-    do_DELETE=do_GET
-
-class ThreadingHTTPServer (SocketServer.ThreadingMixIn,
-                           BaseHTTPServer.HTTPServer): pass
+def start_server(host='localhost', port=8080, IPv6=False, timeout=60,
+                  handler=ConnectionHandler):
+    if IPv6==True:
+        soc_type=socket.AF_INET6
+    else:
+        soc_type=socket.AF_INET
+    soc = socket.socket(soc_type)
+    soc.bind((host, port))
+    print "Serving on %s:%d."%(host, port)#debug
+    soc.listen(0)
+    while 1:
+        thread.start_new_thread(handler, soc.accept()+(timeout,))
 
 if __name__ == '__main__':
-    from sys import argv
-    if argv[1:] and argv[1] in ('-h', '--help'):
-        print argv[0], "[port [allowed_client_name ...]]"
-    else:
-        if argv[2:]:
-            allowed = []
-            for name in argv[2:]:
-                client = socket.gethostbyname(name)
-                allowed.append(client)
-                print "Accept: %s (%s)" % (client, name)
-            ProxyHandler.allowed_clients = allowed
-            del argv[2:]
-        else:
-            print "Any clients will be served..."
-        BaseHTTPServer.test(ProxyHandler, ThreadingHTTPServer)
+    start_server()

@@ -1,0 +1,11 @@
+GET http://clc.stackoverflow.com/soi.gif?an=Y2NikLX4VpkfdtmDkQEIWBgZTLwYWYUZGBkYtZgYGGSNJ7gur3xkz8Q3BSgPFmfYU3atpmP-acUZ2gA&at=1&pt=453 HTTP/1.1 2016-03-27T18:41:40Z
+HTTP/1.1 200 OK
+Cache-Control: no-cache, no-store
+Pragma: no-cache
+Content-Type: image/gif
+Expires: -1
+X-Request-Guid: 7c5fb92c-c153-4873-9ea8-4cf7265eef3c
+Date: Sun, 27 Mar 2016 18:41:57 GMT
+Content-Length: 43
+Connection: keep-alive
+

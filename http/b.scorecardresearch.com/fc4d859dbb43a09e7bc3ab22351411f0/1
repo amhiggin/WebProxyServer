@@ -1,0 +1,16 @@
+HTTP/1.0 400 Bad Request
+Server: AkamaiGHost
+Mime-Version: 1.0
+Content-Type: text/html
+Content-Length: 725
+Expires: Sun, 27 Mar 2016 18:46:02 GMT
+Date: Sun, 27 Mar 2016 18:46:02 GMT
+Connection: close
+
+<HTML><HEAD>
+<TITLE>Invalid URL</TITLE>
+</HEAD><BODY>
+<H1>Invalid URL</H1>
+The requested URL "&#47;i&#46;gif&#63;e&#61;eyJhdiI6MjA4MTIsImF0Ijo0LCJidCI6MCwiY20iOjM0NzYyNywiY2giOjExNzgsImNrIjp7fSwiY3IiOjk5NzY3NywiZGkiOiI0ZWJiZWI0ZGM5ODI0MjRhOGVjOTE3Y2EyYTIwM2E4NSIsImRtIjoxLCJmYyI6MTQxMTA2OCwiZmwiOjk3NzExNSwiaXAiOiI4Ni40Mi43OS4yMTUiLCJrdyI6InB5dGhvbixtdWx0aXRocmVhZGluZyIsIm1rIjoicHl0aG9uIiwibnciOjIyLCJwYyI6NiwiZWMiOjYsInByIjo3NjUsInJ0IjoyLCJzdCI6ODI3NywidWsiOiJ1ZTEtZDBmZjQ0NmNmM2FhNDhhODk1ZjRjZjg0NWY0ZWI1NjIiLCJ6biI6NDMsInRzIjoxNDU5MTA0MzYyMzkzLCJiZiI6dHJ1ZSwicG4iOiJhZHplcmsxMzkzNDI2MTcifQ&#38;s&#61;tvV7xdGmx0y0zaZIerXdZltisv0", is invalid.<p>
+Reference&#32;&#35;9&#46;e5a8869f&#46;1459104362&#46;681c9a6
+</BODY></HTML>
