@@ -1,8 +1,8 @@
-import socket, sys, blocking, os, Server
+import socket, sys, blocking, os, Server, ssl
 
 # ********* CONSTANT VARIABLES *********
 BACKLOG = 2  # how many pending connections queue will hold
-MAX_DATA_RECV = 20000  # max number of bytes we receive at once
+MAX_DATA_RECV = 200000  # max number of bytes we receive at once
 DEBUG = False  # set to True to see the debug msgs
 FILE_EXISTS = False
 
@@ -10,14 +10,19 @@ FILE_EXISTS = False
 def proxy_threading(conn, client_addr, cache):
 
     request = conn.recv(MAX_DATA_RECV)
-    file = request.split()[1].partition("/")[2]
-    filename =str(file)
-    filename = filename.replace("/", "AZBYCX")
-    filename+=".dat"
-    print "File is ", file
-    print "Filename is ", filename
-    filepath = os.path.join("C:/Users/Amber/Documents/Cache/" + filename)
-    print "Filepath is ", filepath
+    try:
+        file = request.split()[1].partition("/")[2]
+        filename =str(file)
+        filename = filename.replace("/", "AZBYCX")
+        filename+=".txt"
+        print "File is ", file
+        print "Filename is ", filename
+        filepath = os.path.join("C:/Users/Amber/Documents/Cache/" + filename)
+        print "Filepath is ", filepath
+    except IndexError:
+        print "Didn't work...returning to main program"
+        Server.main()
+
 
     first_line = request.split('\n')[0]
 
@@ -88,6 +93,7 @@ def proxy_threading(conn, client_addr, cache):
                     # receive data from web server
                     data = s.recv(MAX_DATA_RECV)
                     print "Received data from webserver..."
+
                     # expect to see HTTP/1.0 200 OK so that we know it connected
 
 
@@ -112,13 +118,7 @@ def proxy_threading(conn, client_addr, cache):
                 if conn:
                     conn.close()
                 print "Runtime Error: ", message
-                sys.exit(1)
+                sys.e
 
-
-        """print "Would you like to block this url? Enter 1 for yes, 2 for no"
-        input = raw_input()
-        if input == 1:
-            blocking.add_blocked(url)
-        """
         f.close()       #close the file
         print "Successfully fetched the page", url
