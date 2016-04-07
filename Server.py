@@ -1,4 +1,4 @@
-import httplib, thread, socket, proxy_thread, sys, dircache, threading, select, time, tempfile, os, fileinput, filecmp, blocking
+import thread, socket, proxy_thread, sys, select, time, os, blocking
 
 BACKLOG = 50            # how many pending connections queue will hold
 MAX_DATA_RECV = 32768    # max number of bytes we receive at once
@@ -33,7 +33,7 @@ def main(done = 0):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.bind((host, port))
         s.listen(BACKLOG)
-        print 'The proxy server is ready to receive on port ', port
+        print 'The proxy server is ready to receive on port ', port, " at ", time.time()
     except socket.error, (value, message):
         if s:
             pass
@@ -54,16 +54,11 @@ def main(done = 0):
         else:                       # still no data available
             time.sleep(0.5)
 
-
-
     # empty the cache before exiting the program
-    for i in range (0, 50):
+    for i in range (0, 500):
         os.unlink(cache[i])
     print("Closing connection")
     s.close()
 
 if __name__ == "__main__":
     main()
-
-# the web proxy server should cache each page it receives and check the cache
-# for each page that is requeste

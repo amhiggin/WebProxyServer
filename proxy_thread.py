@@ -1,10 +1,11 @@
 import socket, sys, blocking, os, Server, ssl
 
 # ********* CONSTANT VARIABLES *********
-BACKLOG = 2  # how many pending connections queue will hold
+BACKLOG = 50  # how many pending connections queue will hold
 MAX_DATA_RECV = 200000  # max number of bytes we receive at once
 DEBUG = False  # set to True to see the debug msgs
 FILE_EXISTS = False
+prohib = {"/", "?", "@", "!", "=", "+"}
 
 
 def proxy_threading(conn, client_addr, cache):
@@ -13,15 +14,17 @@ def proxy_threading(conn, client_addr, cache):
     try:
         file = request.split()[1].partition("/")[2]
         filename =str(file)
+        for x in prohib:
+            filename = filename.replace("x", "AZBYCX")
         filename = filename.replace("/", "AZBYCX")
-        filename+=".txt"
+        filename+=".dat"
         print "File is ", file
         print "Filename is ", filename
         filepath = os.path.join("C:/Users/Amber/Documents/Cache/" + filename)
         print "Filepath is ", filepath
     except IndexError:
         print "Didn't work...returning to main program"
-        Server.main()
+        Server.main(1)
 
 
     first_line = request.split('\n')[0]
@@ -35,7 +38,7 @@ def proxy_threading(conn, client_addr, cache):
 
     if blocked == True:
         print "Blocked"
-        Server.main()       #return to main program and wait for next
+        Server.main(1)       #return to main program and wait for next
     else:
         # URL not on blocked list
 
@@ -118,7 +121,7 @@ def proxy_threading(conn, client_addr, cache):
                 if conn:
                     conn.close()
                 print "Runtime Error: ", message
-                sys.e
+                sys.exit(1)
 
         f.close()       #close the file
         print "Successfully fetched the page", url
