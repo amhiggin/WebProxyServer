@@ -1,3 +1,3 @@
 # README #
 
-Web proxy server in Python.
+Simple web proxy server.
